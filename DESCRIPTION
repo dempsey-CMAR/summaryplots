@@ -15,3 +15,5 @@ Imports:
     leaflet,
     RColorBrewer,
     viridis
+URL: https://github.com/dempsey-CMAR/summaryplots
+BugReports: https://github.com/dempsey-CMAR/summaryplots/issues
