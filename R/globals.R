@@ -22,7 +22,8 @@ utils::globalVariables(
    "user_min",
 
    "n_group",
-   "group_col"
+   "group_col",
+   "x"
 
   )
 )
