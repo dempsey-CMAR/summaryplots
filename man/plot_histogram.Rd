@@ -2,9 +2,18 @@
 % Please edit documentation in R/plot_histogram.R
 \name{plot_histogram}
 \alias{plot_histogram}
-\title{Plot distrbution of observations}
+\title{Plot distribution of observations}
 \usage{
-plot_histogram(dat, hist_col, binwidth = NULL)
+plot_histogram(
+  dat,
+  hist_col,
+  binwidth = NULL,
+  user_thresh = NULL,
+  fill_col = NULL,
+  pal = "#B0E0E6",
+  bar_outline = "grey10",
+  legend_name = NULL
+)
 }
 \arguments{
 \item{dat}{Data frame with at least one column.}
@@ -12,10 +21,26 @@ plot_histogram(dat, hist_col, binwidth = NULL)
 \item{hist_col}{Name of the column to plot (in quotes).}
 
 \item{binwidth}{Width of the bins. Passed to \code{geom_histogram()}.}
+
+\item{user_thresh}{Optional threshold value(s) that will be plotted as
+vertical orange dotted lines.}
+
+\item{fill_col}{Name of the column used to for the fill colour. If
+\code{fill_col = NULL}, the default fill colour will be used.}
+
+\item{pal}{Colour palette used for the fill.}
+
+\item{bar_outline}{Single colour for the outline of the histogram bars.
+Default is "grey10". May leave artifacts (lines at the top of some groups)
+in the \code{ggplotly()} version of the figure. Use \code{bar_outline = NA}
+to avoid.}
+
+\item{legend_name}{Name of the legend. Default is \code{fill_col}. There will
+not be a legend if \code{fill_col = NULL}.}
 }
 \value{
 Returns a gpplot object.
 }
 \description{
-Plot distrbution of observations
+Plot distribution of observations
 }
