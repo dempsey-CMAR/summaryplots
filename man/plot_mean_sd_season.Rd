@@ -4,13 +4,23 @@
 \alias{plot_mean_sd_season}
 \title{Plot the mean and +/- 1 standard deviation for each month}
 \usage{
-plot_mean_sd_season(dat, facet_county = TRUE, text_size = 14)
+plot_mean_sd_season(
+  dat,
+  n_sd = 1,
+  facet_county = TRUE,
+  ncol = 1,
+  text_size = 14
+)
 }
 \arguments{
-\item{dat}{Data frame with columns: \code{month}, \code{mean},
-\code{stdev}, \code{variable}, and optionally \code{county}.}
+\item{dat}{Data frame with columns: \code{month}, \code{mean}, \code{stdev},
+\code{variable}, and optionally \code{county}.}
+
+\item{n_sd}{Number of standard deviations to add/subtract to the mean.}
 
 \item{facet_county}{If TRUE, plot will be faceted by county.}
+
+\item{ncol}{Number of columns in faceted plot.}
 
 \item{text_size}{Numeric value for the size of the text.}
 }

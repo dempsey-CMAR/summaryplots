@@ -1,20 +1,25 @@
 #' Plot the mean and +/- 1 standard deviation for each month
 #'
-#' @param dat Data frame with columns: \code{month}, \code{mean},
-#'   \code{stdev}, \code{variable}, and optionally \code{county}.
+#' @param dat Data frame with columns: \code{month}, \code{mean}, \code{stdev},
+#'   \code{variable}, and optionally \code{county}.
+#'
+#' @param n_sd Number of standard deviations to add/subtract to the mean.
 #'
 #' @param facet_county If TRUE, plot will be faceted by county.
+#'
+#' @param ncol Number of columns in faceted plot.
 #'
 #' @param text_size Numeric value for the size of the text.
 #'
 #' @return ggplot object.
 #'
-#' @importFrom ggplot2 aes element_text facet_wrap geom_errorbar geom_point ggplot
-#'   scale_x_discrete scale_y_continuous theme
+#' @importFrom ggplot2 aes element_text facet_wrap geom_errorbar geom_point
+#'   ggplot scale_x_discrete scale_y_continuous theme
 #'
 #' @export
 
-plot_mean_sd_season <- function(dat, facet_county = TRUE, text_size = 14) {
+plot_mean_sd_season <- function(
+    dat, n_sd = 1, facet_county = TRUE, ncol = 1, text_size = 14) {
 
   if(length(unique(dat$variable)) > 1) {
     stop("More than one variable found in dat")
@@ -25,7 +30,7 @@ plot_mean_sd_season <- function(dat, facet_county = TRUE, text_size = 14) {
   p <- ggplot(dat, aes(month, mean)) +
     geom_point(size = 1) +
     geom_errorbar(
-      aes(ymin = mean - stdev, ymax = mean + stdev), width = 0
+      aes(ymin = mean - n_sd * stdev, ymax = mean + n_sd * stdev), width = 0
     ) +
     scale_x_discrete(
       name = "", breaks = c("Jan", "Mar", "May", "Jul", "Sep", "Nov")
@@ -35,7 +40,7 @@ plot_mean_sd_season <- function(dat, facet_county = TRUE, text_size = 14) {
 
   if(isTRUE(facet_county)) {
     p <- p +
-      facet_wrap(~county, ncol = 3)
+      facet_wrap(~county, ncol = ncol)
   }
 
   p
